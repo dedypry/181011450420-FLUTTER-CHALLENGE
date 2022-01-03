@@ -31,7 +31,6 @@ class _HomeState extends State<Home> {
   }
 
   void _onRefresh() async {
-    print("on refresh");
     await Future.delayed(Duration(seconds: 2));
     var list = await ApiUser.getUsers(1);
     page = 1;
@@ -43,7 +42,6 @@ class _HomeState extends State<Home> {
   }
 
   void _onLoading() async {
-    print("on loading");
     page++;
     await Future.delayed(Duration(seconds: 2));
     var list = await ApiUser.getUsers(page);
@@ -75,7 +73,7 @@ class _HomeState extends State<Home> {
       context: context,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('dedy'),
+          title: Text('List User Github'),
           actions: [
             IconButton(
                 onPressed: () {
