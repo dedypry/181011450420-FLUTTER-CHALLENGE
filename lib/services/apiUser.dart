@@ -37,6 +37,7 @@ class ApiUser {
         for (var i = 0; i < listUser.length; i++) {
           user.add(_convertToUser(listUser[i]));
         }
+        print(user.toString());
         return user;
       } else {
         return [];
