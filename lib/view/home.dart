@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
           return MyList(
               avatar: listUser[index].avatarUrl,
               login: listUser[index].login,
-              type: listUser[index].type);
+              type: listUser[index].url);
         },
         separatorBuilder: (context, index) {
           return Container();
@@ -134,7 +134,7 @@ class CostumSearch extends SearchDelegate {
       return MyList(
           avatar: userList[index].avatarUrl,
           login: userList[index].login,
-          type: userList[index].type);
+          type: userList[index].url);
     });
   }
 
@@ -154,7 +154,7 @@ class CostumSearch extends SearchDelegate {
                 itemBuilder: (BuildContext contex, int index) => MyList(
                     avatar: list[index].avatarUrl,
                     login: list[index].login,
-                    type: list[index].type));
+                    type: list[index].url));
           }
         });
   }
