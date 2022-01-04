@@ -41,9 +41,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Chalenge Flutter',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
+            theme: ThemeData(primaryColor: Color.fromRGBO(58, 66, 86, 1.0)),
             home: Home()));
   }
 }

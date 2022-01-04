@@ -1,4 +1,5 @@
 import 'package:chalenge_dedy_priyatna_181011450420/component/list.dart';
+import 'package:chalenge_dedy_priyatna_181011450420/component/search.dart';
 import 'package:chalenge_dedy_priyatna_181011450420/models/users.dart';
 import 'package:chalenge_dedy_priyatna_181011450420/services/apiUser.dart';
 import 'package:flutter/material.dart';
@@ -75,8 +76,11 @@ class _HomeState extends State<Home> {
       enableLoadingWhenFailed: true,
       context: context,
       child: Scaffold(
+        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
         appBar: AppBar(
           title: Text('List User Github'),
+          elevation: 0.1,
+          backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
           actions: [
             IconButton(
                 onPressed: () {
@@ -85,6 +89,7 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.search))
           ],
         ),
+        // bottomNavigationBar: ButtonBar(),
         body: SmartRefresher(
           key: _refreshKey,
           controller: _refreshController,
@@ -103,62 +108,5 @@ class _HomeState extends State<Home> {
       ),
       footerTriggerDistance: 30,
     );
-  }
-}
-
-class CostumSearch extends SearchDelegate {
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    // TODO: implement buildActions
-    return [
-      IconButton(
-          onPressed: () {
-            query = "";
-          },
-          icon: Icon(Icons.clear))
-    ];
-  }
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
-    return IconButton(
-        onPressed: () {
-          close(context, null);
-        },
-        icon: Icon(Icons.arrow_back));
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    List<Users> userList = [];
-    print(query);
-    return ListView.builder(itemBuilder: (context, index) {
-      return MyList(
-          avatar: userList[index].avatarUrl,
-          login: userList[index].login,
-          type: userList[index].htmlUrl);
-    });
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return FutureBuilder<List<Users>>(
-        future: ApiUser.searchUsers(query),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            List<Users> list = snapshot.data!;
-            return ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (BuildContext contex, int index) => MyList(
-                    avatar: list[index].avatarUrl,
-                    login: list[index].login,
-                    type: list[index].htmlUrl));
-          }
-        });
   }
 }

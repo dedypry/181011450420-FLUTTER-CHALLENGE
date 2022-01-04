@@ -18,6 +18,13 @@ class Users {
     required this.receivedEventsUrl,
     required this.type,
     required this.siteAdmin,
+    this.name = "name",
+    this.company = "name",
+    this.blog = "name",
+    this.location = "name",
+    this.email = "name",
+    this.hireable = "name",
+    this.bio = "name",
   });
 
   String login;
@@ -38,6 +45,13 @@ class Users {
   String receivedEventsUrl;
   String type;
   bool siteAdmin;
+  String name;
+  String company;
+  String blog;
+  String location;
+  String email;
+  String hireable;
+  String bio;
 
   factory Users.fromJson(Map<String, dynamic> json) => Users(
         login: json["login"],
@@ -58,6 +72,13 @@ class Users {
         receivedEventsUrl: json["received_events_url"],
         type: json["type"],
         siteAdmin: json["site_admin"],
+        name: json["name"] != null ? json["name"] : "",
+        company: json["company"] != null ? json["company"] : "",
+        blog: json["blog"] != null ? json["blog"] : "",
+        location: json["location"] != null ? json["location"] : "",
+        email: json["email"] != null ? json["email"] : "",
+        hireable: json["hireable"] != null ? json["hireable"] : "",
+        bio: json["bio"] != null ? json["bio"] : "",
       );
 
   Map<String, dynamic> toJson() => {

@@ -29,9 +29,9 @@ class ApiUser {
     var URL = Uri.parse("https://api.github.com/search/users?q=" + search);
     var response = await http.get(URL);
 
-    var json = jsonDecode(response.body);
     try {
       if (response.statusCode == 200) {
+        var json = jsonDecode(response.body);
         List<dynamic> listUser = (json as Map<String, dynamic>)['items'];
         List<Users> user = [];
 
@@ -46,5 +46,12 @@ class ApiUser {
     } catch (e) {
       return [];
     }
+  }
+
+  static Future<Users> detailUser(String username) async {
+    var Url = Uri.parse("https://api.github.com/users/" + username);
+    var response = await http.get(Url);
+    var json = jsonDecode(response.body);
+    return Users.fromJson(json);
   }
 }
