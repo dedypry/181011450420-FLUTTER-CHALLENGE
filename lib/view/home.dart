@@ -31,6 +31,7 @@ class _HomeState extends State<Home> {
   }
 
   void _onRefresh() async {
+    print('refresh');
     await Future.delayed(Duration(seconds: 2));
     var list = await ApiUser.getUsers(1);
     page = 1;
@@ -42,13 +43,15 @@ class _HomeState extends State<Home> {
   }
 
   void _onLoading() async {
-    page++;
     await Future.delayed(Duration(seconds: 2));
+    page++;
+    print("page = " + page.toString());
     var list = await ApiUser.getUsers(page);
     listUser.addAll(list);
-    setState(() {
-      _refreshController.refreshCompleted();
-    });
+    print("sudah");
+    _refreshController.loadComplete();
+    setState(() {});
+    print("sudah 2");
   }
 
   Widget buildCtn() {
